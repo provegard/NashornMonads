@@ -1,0 +1,3 @@
+[submodule "jvm-npm"]
+	path = jvm-npm
+	url = git@github.com:nodyn/jvm-npm.git
