@@ -1,0 +1,20 @@
+{
+  "name": "nashorn-monads",
+  "version": "1.0.0",
+  "description": "Support for Scala monads in Nashorn using ES6 generator functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "sbt test"
+  },
+  "keywords": [
+    "scala",
+    "monads",
+    "es6",
+    "nashorn"
+  ],
+  "author": "Per Rovegard <per@rovegard.se>",
+  "license": "MIT",
+  "devDependencies": {
+    "q": "^1.4.1"
+  }
+}
