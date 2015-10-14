@@ -1,4 +1,4 @@
-package com.factor10.programmaticallyspeaking.nashornmonads.util
+package com.programmaticallyspeaking.nashornmonads.util
 
 object IO {
   def doIgnoringExceptions(block: => Unit): Unit = {

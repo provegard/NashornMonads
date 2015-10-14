@@ -1,4 +1,4 @@
-package com.factor10.programmaticallyspeaking.nashornmonads.util
+package com.programmaticallyspeaking.nashornmonads.util
 
 /**
  * Try-with-resources in Scala. From http://illegalexception.schlichtherle.de/2012/07/19/try-with-resources-for-scala/

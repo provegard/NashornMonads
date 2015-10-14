@@ -1,9 +1,10 @@
 package test.com.programmaticallyspeaking.nashornmonads.nashorn
 
 import com.programmaticallyspeaking.nashornmonads.nashorn.Bridge
+import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.{FlatSpec, Matchers, FunSpec}
 
-class BridgeTest extends FlatSpec with Matchers {
+class BridgeTest extends FlatSpec with Matchers with TableDrivenPropertyChecks  {
 
   "The bridge" should "patch the global load function so that it can load resources" in {
     val bridge = Bridge(classOf[BridgeTest])
@@ -24,17 +25,22 @@ class BridgeTest extends FlatSpec with Matchers {
     ex.getMessage should include ("Cannot load script")
   }
 
-  "The global" should "expose Q" in {
-    val bridge = Bridge()
-    val q = bridge.eval("this.Q;")
-    q shouldNot be (null)
+  val globalExamples =
+    Table(
+      "global",
+      "Q",
+      "setTimeout",
+      "setInterval",
+      "clearTimeout",
+      "clearInterval"
+    )
+
+  "The global" should "expose the appropriate objects/functions" in {
+    forAll(globalExamples) { name =>
+      val bridge = Bridge()
+      val ref = bridge.eval(s"this['$name'];")
+
+      assert(ref ne null, s"-- could not find global function/object $name")
+    }
   }
-//
-//  "The jvm-npm module" should "add require support" in {
-//    val bridge = Bridge()
-//
-//    bridge.eval("load('/lib/generated/jvm-npm.js');")
-//    val q = bridge.eval("require('Q');")
-//    q shouldNot be (null)
-//  }
 }
